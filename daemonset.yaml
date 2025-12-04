@@ -15,10 +15,18 @@ spec:
     spec:
       containers:
       - name: myapp-container
-        image: us.icr.io/<your SN labs namespace>/myapp:v1
+        image: us.icr.io/<SN-NAMESPACE>/myapp:v1
         ports:
         - containerPort: 3000
           name: http
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          capabilities:
+            drop: ["ALL"]
+          seccompProfile:
+            type: "RuntimeDefault"
+          runAsUser: 999
       tolerations:
       - key: node-role.kubernetes.io/master
         effect: NoSchedule
