@@ -20,7 +20,7 @@ spec:
         app: myapp
     spec:
       containers:
-      - image: us.icr.io/<SN-NAMESPACE>/myapp:v1
+      - image: us.icr.io/<your SN labs namespace>/myapp:v1
         imagePullPolicy: Always
         name: myapp
         ports:
@@ -31,11 +31,3 @@ spec:
             cpu: 50m
           requests:
             cpu: 20m
-        securityContext:
-          allowPrivilegeEscalation: false
-          runAsNonRoot: true
-          capabilities:
-            drop: ["ALL"]
-          seccompProfile:
-            type: "RuntimeDefault"
-          runAsUser: 999
